@@ -8,3 +8,4 @@ bin/*
 files/**/cache/
 vendor/cookbooks
 *.lock
+.DS_Store
