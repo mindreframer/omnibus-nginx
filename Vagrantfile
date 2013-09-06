@@ -2,6 +2,15 @@
 # vi: set ft=ruby :
 
 require "vagrant"
+=begin
+$ vagrant plugin uninstall berkshelf-vagrant
+$ vagrant plugin install vagrant-berkshelf
+$ vagrant plugin install vagrant-omnibus
+=end
+
+# unless %x(vagrant plugin list|grep vagrant-omnibus) && %x(vagrant plugin list|grep vagrant-berkshelf)
+#   raise "Please install vagrant-berkshelf and vagrant-omnibus plugins!"
+# end
 
 if Vagrant::VERSION < "1.2.1"
   raise "The Omnibus Build Lab is only compatible with Vagrant 1.2.1+"
@@ -14,10 +23,12 @@ project_name = "nginx"
 Vagrant.configure("2") do |config|
 
   config.vm.hostname = "#{project_name}-omnibus-build-lab"
-  config.vm.define 'ubuntu-12.04' do |c|
+  #config.vm.define 'ubuntu-12.04' do |c|
+  config.vm.define 'precise64' do |c|
     c.berkshelf.berksfile_path = "./Berksfile"
-    c.vm.box = "canonical-ubuntu-12.04"
-    c.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
+    #c.vm.box = "canonical-ubuntu-12.04"
+    c.vm.box = "precise64"
+    #c.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
   end
 
   config.vm.define 'centos-6' do |c|
