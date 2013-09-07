@@ -32,7 +32,7 @@ build do
   command "patch -p1 < #{source_dir}/ngx_http_filter_cache/core.diff", cwd: "#{project_dir}/bundle/nginx-1.2.8"
   command "patch -p1 < #{source_dir}/nginx_upstream_check_module/check_1.2.6+.patch",  cwd: "#{project_dir}/bundle/nginx-1.2.8"
 
-  patch :source => 'server-header.diff'
+  #patch :source => 'server-header.diff'
 
   command ["./configure",
            "--prefix=#{install_dir}/embedded",
